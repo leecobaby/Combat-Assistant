@@ -1,21 +1,21 @@
 name = "Combat Assistant"
-description = "Combat Assistant"
+description = [[
+  在战斗方面提供自动化的帮助
+  作为沙发玩家(手柄)实在受不了手柄在战斗中羸弱单一的操作导致一次次的死亡
+
+  功能简介：实现装甲熊獾坐地时自动使用亮茄法杖攻击其三次
+  适用范围：任何角色，手柄玩家，键鼠玩家
+  PS：请确物品栏有一把拥有耐久的亮茄法杖
+  GitHub: @leecobaby
+]]
 author = "Leeco"
-version = "0.2"
-
-forumthread = ""
-
-api_version = 10
-
-dst_compatible = true
+version = "0.2.20231029"
 
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
-
--- This lets the clients know that they need to download the mod before they can join a server that is using it.
+forumthread = ""
+api_version = 10
+dst_compatible = true
 all_clients_require_mod = false
-
--- This let's the game know that this mod doesn't need to be listed in the server's mod listing
 client_only_mod = true
-
 server_filter_tags = {}
