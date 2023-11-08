@@ -5,13 +5,14 @@ description = [[
 
   功能简介：实现装甲熊獾坐地时自动使用亮茄法杖攻击其三次
   适用范围：任何角色，手柄玩家，键鼠玩家
-  PS：请确物品栏有一把拥有耐久的亮茄法杖
+  PS：请确保物品栏有一把拥有耐久的亮茄法杖
   GitHub: @leecobaby
 ]]
 author = "Leeco"
 version = "0.2.20231029"
+priority = -9000 -- 设置优先级
 
-icon_atlas = "modicon.xml"
+icon_atlas = "images/modicon.xml"
 icon = "modicon.tex"
 forumthread = ""
 api_version = 10

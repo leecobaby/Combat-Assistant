@@ -12,8 +12,8 @@ local Player = _G.ThePlayer
 
 local FRAMES_UP = 11
 local boss = "mutatedbearger"
-local search_range = 20
-local cache = {butt_pst = false}
+local search_range = 40
+local cache = {putt_state = false}
 
 local function DoAttackBearger(player, target)
   if player ~= nil and player:IsValid() and target ~= nil and target:IsValid() then
@@ -48,10 +48,9 @@ end
 --   DoAttackBearger(player, target)
 -- end
 -- end
-print("========战斗助手========")
 
 AddPrefabPostInit(boss, function(inst)
-  print('============Start============')
+  print('============[Combat Assistan]: Brains Start============')
   if inst == nil or not inst.AnimState then
     return
   end
@@ -62,9 +61,11 @@ AddPrefabPostInit(boss, function(inst)
 
   inst:DoPeriodicTask(GLOBAL.FRAMES * 10, function()
     if FindRecentEnt(boss, search_range, nil, nil, nil) then
-      if IsAnims("butt_pst", inst) and not cache['butt_pst'] then
-        print("[AinmState]: butt_pst")
-        cache.butt_pst = true
+      -- 当一个人的时候，会监听到 putt_pst 动画，当多人游戏的时候有人攻击时，可能监听不到 butt_pst，但可以监听到 butt_pst_hit
+      local is_hit_anim = IsAnims("butt_pst", inst) or IsAnims("butt_face_hit", inst)
+      if is_hit_anim and not cache.putt_state then
+        print("[AinmState]: butt")
+        cache.putt_state = true
         inst.SoundEmitter:PlaySound("tips/brief/8bit recovery 2")
 
         inst:DoTaskInTime(0.1, function() DoAttackBearger(player, target) end)
