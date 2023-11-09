@@ -9,7 +9,7 @@ description = [[
   GitHub: @leecobaby
 ]]
 author = "Leeco"
-version = "0.2.20231029"
+version = "0.4.20231109"
 priority = -9000 -- 设置优先级
 
 icon_atlas = "images/modicon.xml"

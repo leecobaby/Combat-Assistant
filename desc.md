@@ -21,3 +21,13 @@ PS: Please make sure you have a Moonlens Staff with durability in your inventory
 GitHub: @leecobaby
 
 Mod development novice, the code is not perfect, contributions are welcome.
+
+## Update Log
+
+- 0.4.20231109
+  - 增加 Debug 输出
+  - 修复部分错误
+- 0.3.20231101
+  - 修复在多人联机时，其他玩家在装甲熊獾坐地时攻击导致装甲熊獾状态改变而无法监听到的问题
+- 0.2.20231029
+  - 实现装甲熊獾坐地时自动使用亮茄法杖攻击其三次

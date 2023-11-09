@@ -16,6 +16,17 @@ function IsAnims(anims, inst)
   end
 end
 
+-- 获取当前动画
+function GetAnim(anims, inst)
+  if type(anims) == "table" then
+    for _, anim in ipairs(anims) do
+      if IsAnim(anim, inst) then
+        return anim
+      end
+    end
+  end
+end
+
 -- 获取所有物品（未指定prefab则获取全部）
 function GetItemsFromAll(prefab, alltags)
   local items = {}

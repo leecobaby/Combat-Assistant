@@ -1,4 +1,5 @@
 require "utils/main"
+
 GLOBAL.setmetatable(env, {__index = function(t, k) return GLOBAL.rawget(GLOBAL, k) end})
 Assets = {Asset("SOUNDPACKAGE", "sound/tips.fev"), Asset("SOUND", "sound/tips.fsb")}
 
@@ -14,9 +15,12 @@ local FRAMES_UP = 11
 local boss = "mutatedbearger"
 local search_range = 40
 local cache = {putt_state = false}
+local ANIM_CONFIG = require "configs/animation"
+local BEARGER_ANIMS = ANIM_CONFIG.BEARGER_ANIMS
 
 local function DoAttackBearger(player, target)
-  if player ~= nil and player:IsValid() and target ~= nil and target:IsValid() then
+  cache.putt_state = false
+  if player ~= nil and target ~= nil then
     local item = GetItemFromAll("staff_lunarplant")
     if item then
       -- 切换到亮茄法杖
@@ -27,8 +31,7 @@ local function DoAttackBearger(player, target)
       SendRPCToServer(RPC.AttackButton, target, false, true)
       SendRPCToServer(RPC.AttackButton, target, false, true)
       SendRPCToServer(RPC.AttackButton, target, false, true)
-      cache.butt_pst = false
-      print("[DoAttackBearger]: SendRPCToServer")
+      print("[Combat Assistan]: DoAttackBearger - SendRPCToServer")
       -- SendRPCToServer(RPC.AttackButton, target, false, true)
       -- inst:DoTaskInTime(0.2, function()
       --   SendRPCToServer(RPC.AttackButton, target, false, true)
@@ -61,10 +64,14 @@ AddPrefabPostInit(boss, function(inst)
 
   inst:DoPeriodicTask(GLOBAL.FRAMES * 10, function()
     if FindRecentEnt(boss, search_range, nil, nil, nil) then
+      -- Debug 当前动画
       -- 当一个人的时候，会监听到 putt_pst 动画，当多人游戏的时候有人攻击时，可能监听不到 butt_pst，但可以监听到 butt_pst_hit
       local is_hit_anim = IsAnims("butt_pst", inst) or IsAnims("butt_face_hit", inst)
+
+      print("[Combat Assistan]: Animation - " .. GetAnim(BEARGER_ANIMS, inst) "," .. is_hit_anim "," .. cache.putt_state)
+
       if is_hit_anim and not cache.putt_state then
-        print("[AinmState]: butt")
+        print("[Combat Assistan]: Hit AnimState - butt")
         cache.putt_state = true
         inst.SoundEmitter:PlaySound("tips/brief/8bit recovery 2")
 
